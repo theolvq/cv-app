@@ -1,58 +1,72 @@
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+
 import React from 'react';
 
 const Education = props => {
   return (
-    <section className='form-container'>
-      <h3>Education</h3>
-      <form>
-        <label htmlFor='uniName'>
-          University Name:{' '}
-          <input
-            type='text'
-            placeholder='University Name'
-            required
-            name='uniName'
-            value={props.data.uniName}
-            onChange={props.onChange}
-          />
-        </label>
-        <label htmlFor='certName'>
-          Certification Name:{' '}
-          <input
-            type='text'
-            placeholder='Certification Name'
-            required
-            name='certName'
-            value={props.data.certName}
-            onChange={props.onChange}
-          />
-        </label>
-        <div className='dates-container'>
-          <label htmlFor='eduStartDate'>
-            Start Date:{' '}
-            <input
-              type='date'
-              placeholder='Start Date'
-              required
-              name='eduStartDate'
-              value={props.data.eduStartDate}
-              onChange={props.onChange}
-            />
-          </label>
-          <label htmlFor='eduEndDate'>
-            End Date:{' '}
-            <input
-              type='date'
-              placeholder='end date'
-              required
-              name='eduEndDate'
-              value={props.data.eduEndDate}
-              onChange={props.onChange}
-            />
-          </label>
-        </div>
-      </form>
-    </section>
+    <Container>
+      <Paper>
+        <Typography variant='h3' gutterBottom>
+          Education
+        </Typography>
+        <form>
+          <Grid container spacing={3}>
+            <Grid item xs={12} md={6}>
+              <TextField
+                variant='filled'
+                fullWidth
+                type='text'
+                label='University Name'
+                required
+                name='uniName'
+                value={props.data.uniName}
+                onChange={props.onChange}
+              />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <TextField
+                variant='filled'
+                fullWidth
+                type='text'
+                label='Certification Name'
+                required
+                name='certName'
+                value={props.data.certName}
+                onChange={props.onChange}
+              />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <TextField
+                variant='filled'
+                fullWidth
+                type='date'
+                label='Start Date'
+                required
+                name='startDate'
+                value={props.data.startDate}
+                onChange={props.onChange}
+              />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <TextField
+                variant='filled'
+                fullWidth
+                type='date'
+                label='End date'
+                required
+                name='endDate'
+                value={props.data.endDate}
+                onChange={props.onChange}
+              />
+            </Grid>
+          </Grid>
+        </form>
+      </Paper>
+    </Container>
   );
 };
 

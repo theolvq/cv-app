@@ -2,8 +2,20 @@ import React, { useState } from 'react';
 import PersonalInfo from './PersonalInfo';
 import Education from './Education';
 import Experience from './Experience';
+import { makeStyles } from '@material-ui/core';
+
+const useStyles = makeStyles({
+  formSection: {
+    marginBottom: '2rem',
+    marginTop: '1rem',
+  },
+});
 
 const Form = () => {
+  const classes = useStyles();
+
+  const today = new Date().toLocaleDateString();
+
   const [personalData, setPersonalData] = useState({
     firstName: '',
     lastName: '',
@@ -14,14 +26,14 @@ const Form = () => {
     companyName: '',
     jobTitle: '',
     mainTasks: '',
-    startDate: '',
-    endDate: '',
+    startDate: `${today}`,
+    endDate: `${today}`,
   });
   const [eduData, setEduData] = useState({
     uniName: '',
     certName: '',
-    startDate: '',
-    endDate: '',
+    startDate: `${today}`,
+    endDate: `${today}`,
   });
 
   const handlePersonalDataChange = e => {
@@ -40,7 +52,7 @@ const Form = () => {
     }));
   };
 
-  const handleEduData = e => {
+  const handleEduDataChange = e => {
     const { name, value } = e.target;
     setEduData(prevEduData => ({
       ...prevEduData,
@@ -52,7 +64,7 @@ const Form = () => {
     <div>
       <PersonalInfo onChange={handlePersonalDataChange} data={personalData} />
       <Experience onChange={handleProDataChange} data={proData} />
-      <Education onChange={handleEduData} data={eduData} />
+      <Education onChange={handleEduDataChange} data={eduData} />
     </div>
   );
 };

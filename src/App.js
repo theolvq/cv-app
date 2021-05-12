@@ -1,11 +1,9 @@
-import { useState } from 'react';
 import './App.css';
 import Form from './components/Form';
 
 const App = () => {
   return (
     <div>
-      <h1>Code, code, code</h1>
       <Form />
     </div>
   );
