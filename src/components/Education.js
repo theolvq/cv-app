@@ -5,11 +5,13 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 
 import React from 'react';
+import AddButton from './AddButton';
+import EditButton from './EditButton';
 
 const Education = props => {
   return (
     <Container>
-      <Paper>
+      <Paper className='form-container'>
         <Typography variant='h3' gutterBottom>
           Education
         </Typography>
@@ -17,7 +19,7 @@ const Education = props => {
           <Grid container spacing={3}>
             <Grid item xs={12} md={6}>
               <TextField
-                variant='filled'
+                variant='standard'
                 fullWidth
                 type='text'
                 label='University Name'
@@ -29,7 +31,7 @@ const Education = props => {
             </Grid>
             <Grid item xs={12} md={6}>
               <TextField
-                variant='filled'
+                variant='standard'
                 fullWidth
                 type='text'
                 label='Certification Name'
@@ -39,9 +41,9 @@ const Education = props => {
                 onChange={props.onChange}
               />
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={6}>
               <TextField
-                variant='filled'
+                variant='standard'
                 fullWidth
                 type='date'
                 label='Start Date'
@@ -51,9 +53,9 @@ const Education = props => {
                 onChange={props.onChange}
               />
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={6}>
               <TextField
-                variant='filled'
+                variant='standard'
                 fullWidth
                 type='date'
                 label='End date'
@@ -63,6 +65,8 @@ const Education = props => {
                 onChange={props.onChange}
               />
             </Grid>
+            <AddButton />
+            <EditButton />
           </Grid>
         </form>
       </Paper>

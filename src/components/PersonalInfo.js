@@ -8,7 +8,7 @@ import React from 'react';
 const PersonalInfo = props => {
   return (
     <Container>
-      <Paper>
+      <Paper className='form-container'>
         <Typography variant='h3' gutterBottom>
           Personal Information
         </Typography>
@@ -16,11 +16,10 @@ const PersonalInfo = props => {
           <Grid container spacing={3}>
             <Grid item xs={12} md={6}>
               <TextField
-                id='filled-basic'
                 type='text'
                 label='First Name'
                 required
-                variant='filled'
+                variant='standard'
                 name='firstName'
                 fullWidth
                 value={props.data.firstName}
@@ -33,7 +32,7 @@ const PersonalInfo = props => {
                 type='text'
                 label='Last Name'
                 required
-                variant='filled'
+                variant='standard'
                 name='lastName'
                 fullWidth
                 value={props.data.lastName}
@@ -46,7 +45,7 @@ const PersonalInfo = props => {
                 type='tel'
                 label='Phone Number'
                 required
-                variant='filled'
+                variant='standard'
                 name='phone'
                 fullWidth
                 value={props.data.phone}
@@ -59,7 +58,7 @@ const PersonalInfo = props => {
                 type='email'
                 label='Email'
                 required
-                variant='filled'
+                variant='standard'
                 name='email'
                 fullWidth
                 value={props.data.email}

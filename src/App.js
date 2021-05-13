@@ -1,11 +1,20 @@
+import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+import { green, purple } from '@material-ui/core/colors';
 import './App.css';
 import Form from './components/Form';
 
+const theme = createMuiTheme({
+  palette: {
+    primary: purple,
+    secondary: green,
+  },
+});
+
 const App = () => {
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <Form />
-    </div>
+    </ThemeProvider>
   );
 };
 

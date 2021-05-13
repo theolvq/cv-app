@@ -2,18 +2,8 @@ import React, { useState } from 'react';
 import PersonalInfo from './PersonalInfo';
 import Education from './Education';
 import Experience from './Experience';
-import { makeStyles } from '@material-ui/core';
-
-const useStyles = makeStyles({
-  formSection: {
-    marginBottom: '2rem',
-    marginTop: '1rem',
-  },
-});
 
 const Form = () => {
-  const classes = useStyles();
-
   const today = new Date().toLocaleDateString();
 
   const [personalData, setPersonalData] = useState({
