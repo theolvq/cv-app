@@ -18,13 +18,17 @@ const Form = () => {
     mainTasks: '',
     startDate: `${today}`,
     endDate: `${today}`,
+    ongoing: false,
   });
   const [eduData, setEduData] = useState({
     uniName: '',
     certName: '',
     startDate: `${today}`,
     endDate: `${today}`,
+    ongoing: false,
   });
+
+  const [resumeData, setResumeData] = useState([]);
 
   const handlePersonalDataChange = e => {
     const { name, value } = e.target;
@@ -34,25 +38,45 @@ const Form = () => {
     }));
   };
 
+  const submitData = e => {
+    console.log('submitting');
+    e.preventDefault();
+    setResumeData(prevResumeData => [...prevResumeData, personalData]);
+  };
+
   const handleProDataChange = e => {
-    const { name, value } = e.target;
-    setProData(prevProData => ({
-      ...prevProData,
-      [name]: value,
-    }));
+    const { name, value, type, checked } = e.target;
+    type === 'checkbox'
+      ? setProData(prevProData => ({
+          ...prevProData,
+          ongoing: checked,
+        }))
+      : setProData(prevProData => ({
+          ...prevProData,
+          [name]: value,
+        }));
   };
 
   const handleEduDataChange = e => {
-    const { name, value } = e.target;
-    setEduData(prevEduData => ({
-      ...prevEduData,
-      [name]: value,
-    }));
+    const { name, value, type, checked } = e.target;
+    type === 'checkbox'
+      ? setEduData(prevEduData => ({
+          ...prevEduData,
+          ongoing: checked,
+        }))
+      : setEduData(prevEduData => ({
+          ...prevEduData,
+          [name]: value,
+        }));
   };
 
   return (
     <div>
-      <PersonalInfo onChange={handlePersonalDataChange} data={personalData} />
+      <PersonalInfo
+        onChange={handlePersonalDataChange}
+        data={personalData}
+        onSubmit={submitData}
+      />
       <Experience onChange={handleProDataChange} data={proData} />
       <Education onChange={handleEduDataChange} data={eduData} />
     </div>

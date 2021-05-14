@@ -4,6 +4,8 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import React from 'react';
+import AddButton from './AddButton';
+import EditButton from './EditButton';
 
 const PersonalInfo = props => {
   return (
@@ -12,7 +14,7 @@ const PersonalInfo = props => {
         <Typography variant='h3' gutterBottom>
           Personal Information
         </Typography>
-        <form>
+        <form onSubmit={props.onSubmit}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={6}>
               <TextField
@@ -65,6 +67,8 @@ const PersonalInfo = props => {
                 onChange={props.onChange}
               />
             </Grid>
+            <AddButton />
+            <EditButton />
           </Grid>
         </form>
       </Paper>

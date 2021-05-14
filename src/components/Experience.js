@@ -5,6 +5,8 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import AddButton from './AddButton';
 import EditButton from './EditButton';
+import Switch from '@material-ui/core/Switch';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 import React from 'react';
 
@@ -54,7 +56,7 @@ const Experience = props => {
                 onChange={props.onChange}
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={5}>
               <TextField
                 variant='standard'
                 type='date'
@@ -66,16 +68,30 @@ const Experience = props => {
                 onChange={props.onChange}
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={5}>
               <TextField
                 variant='standard'
                 type='date'
                 label='End date'
-                required
+                required={!props.data.ongoing}
                 name='endDate'
                 fullWidth
                 value={props.data.endDate}
                 onChange={props.onChange}
+                disabled={props.data.ongoing}
+              />
+            </Grid>
+            <Grid item xs={2}>
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={props.data.ongoing}
+                    name='ongoing'
+                    onChange={props.onChange}
+                  />
+                }
+                label='Ongoing'
+                labelPlacement='top'
               />
             </Grid>
             <AddButton />
