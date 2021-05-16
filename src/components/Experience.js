@@ -9,15 +9,23 @@ import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 import React from 'react';
+import SubmitButton from './SubmitButton';
+// companyName,
+// jobTitle,
+// mainTasks,
+// startDate,
+// endDate,
+// isOngoing,
 
-const Experience = props => {
+const Experience = ({ onChange, onSubmit, data }) => {
+  const [proData] = data;
   return (
     <Container>
       <Paper className='form-container'>
         <Typography variant='h3' gutterBottom>
           Profesional Experience
         </Typography>
-        <form>
+        <form onSubmit={onSubmit}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={6}>
               <TextField
@@ -27,8 +35,8 @@ const Experience = props => {
                 required
                 name='companyName'
                 fullWidth
-                value={props.data.companyName}
-                onChange={props.onChange}
+                value={proData.companyName}
+                onChange={onChange}
               />
             </Grid>
             <Grid item xs={12} md={6}>
@@ -39,8 +47,8 @@ const Experience = props => {
                 required
                 name='jobTitle'
                 fullWidth
-                value={props.data.jobTitle}
-                onChange={props.onChange}
+                value={proData.jobTitle}
+                onChange={onChange}
               />
             </Grid>
             <Grid item xs={12}>
@@ -52,8 +60,8 @@ const Experience = props => {
                 rows={4}
                 name='mainTasks'
                 fullWidth
-                value={props.data.mainTasks}
-                onChange={props.onChange}
+                value={proData.mainTasks}
+                onChange={onChange}
               />
             </Grid>
             <Grid item xs={5}>
@@ -64,8 +72,8 @@ const Experience = props => {
                 required
                 name='startDate'
                 fullWidth
-                value={props.data.startDate}
-                onChange={props.onChange}
+                value={proData.startDate}
+                onChange={onChange}
               />
             </Grid>
             <Grid item xs={5}>
@@ -73,27 +81,28 @@ const Experience = props => {
                 variant='standard'
                 type='date'
                 label='End date'
-                required={!props.data.ongoing}
+                required={!proData.isOngoing}
                 name='endDate'
                 fullWidth
-                value={props.data.endDate}
-                onChange={props.onChange}
-                disabled={props.data.ongoing}
+                value={proData.endDate}
+                onChange={onChange}
+                disabled={proData.isOngoing}
               />
             </Grid>
             <Grid item xs={2}>
               <FormControlLabel
                 control={
                   <Switch
-                    checked={props.data.ongoing}
-                    name='ongoing'
-                    onChange={props.onChange}
+                    checked={proData.isOngoing}
+                    name='isOngoing'
+                    onChange={onChange}
                   />
                 }
                 label='Ongoing'
                 labelPlacement='top'
               />
             </Grid>
+            <SubmitButton />
             <AddButton />
             <EditButton />
           </Grid>

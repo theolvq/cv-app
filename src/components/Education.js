@@ -9,15 +9,17 @@ import React from 'react';
 import AddButton from './AddButton';
 import EditButton from './EditButton';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import SubmitButton from './SubmitButton';
 
-const Education = props => {
+const Education = ({ onChange, onSubmit, data }) => {
+  const [eduData] = data;
   return (
     <Container>
       <Paper className='form-container'>
         <Typography variant='h3' gutterBottom>
           Education
         </Typography>
-        <form onSubmit={props.onSubmit}>
+        <form onSubmit={onSubmit}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={6}>
               <TextField
@@ -27,8 +29,8 @@ const Education = props => {
                 label='University Name'
                 required
                 name='uniName'
-                value={props.data.uniName}
-                onChange={props.onChange}
+                value={eduData.uniName}
+                onChange={onChange}
               />
             </Grid>
             <Grid item xs={12} md={6}>
@@ -39,8 +41,8 @@ const Education = props => {
                 label='Certification Name'
                 required
                 name='certName'
-                value={props.data.certName}
-                onChange={props.onChange}
+                value={eduData.certName}
+                onChange={onChange}
               />
             </Grid>
             <Grid item xs={5}>
@@ -51,8 +53,8 @@ const Education = props => {
                 label='Start Date'
                 required
                 name='startDate'
-                value={props.data.startDate}
-                onChange={props.onChange}
+                value={eduData.startDate}
+                onChange={onChange}
               />
             </Grid>
             <Grid item xs={5}>
@@ -61,32 +63,29 @@ const Education = props => {
                 fullWidth
                 type='date'
                 label='End date'
-                required={!props.data.ongoing}
+                required={!eduData.isOngoing}
                 name='endDate'
-                value={props.data.endDate}
-                onChange={props.onChange}
-                disabled={props.data.ongoing}
+                value={eduData.endDate}
+                onChange={onChange}
+                disabled={eduData.isOngoing}
               />
             </Grid>
             <Grid item xs={2}>
               <FormControlLabel
                 control={
                   <Switch
-                    checked={props.data.ongoing}
+                    checked={eduData.isOngoing}
                     name='ongoing'
-                    onChange={props.onChange}
+                    onChange={onChange}
                   />
                 }
                 label='Ongoing'
                 labelPlacement='top'
               />
             </Grid>
-            {/* <Grid item xs={6}> */}
+            <SubmitButton />
             <AddButton />
-            {/* </Grid> */}
-            {/* <Grid item xs={6}> */}
             <EditButton />
-            {/* </Grid> */}
           </Grid>
         </form>
       </Paper>

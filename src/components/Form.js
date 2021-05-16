@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PersonalInfo from './PersonalInfo';
 import Education from './Education';
 import Experience from './Experience';
+import { v4 as uuidv4 } from 'uuid';
 
 const Form = () => {
   const today = new Date().toLocaleDateString();
@@ -12,23 +13,27 @@ const Form = () => {
     email: '',
     phone: '',
   });
-  const [proData, setProData] = useState({
-    companyName: '',
-    jobTitle: '',
-    mainTasks: '',
-    startDate: `${today}`,
-    endDate: `${today}`,
-    ongoing: false,
-  });
-  const [eduData, setEduData] = useState({
-    uniName: '',
-    certName: '',
-    startDate: `${today}`,
-    endDate: `${today}`,
-    ongoing: false,
-  });
-
-  const [resumeData, setResumeData] = useState([]);
+  const [proData, setProData] = useState([
+    {
+      id: uuidv4(),
+      companyName: '',
+      jobTitle: '',
+      mainTasks: '',
+      startDate: `${today}`,
+      endDate: `${today}`,
+      isOngoing: false,
+    },
+  ]);
+  const [eduData, setEduData] = useState([
+    {
+      id: uuidv4(),
+      uniName: '',
+      certName: '',
+      startDate: `${today}`,
+      endDate: `${today}`,
+      isOngoing: false,
+    },
+  ]);
 
   const handlePersonalDataChange = e => {
     const { name, value } = e.target;
@@ -38,47 +43,72 @@ const Form = () => {
     }));
   };
 
-  const submitData = e => {
-    console.log('submitting');
+  const submitPersonalData = e => {
     e.preventDefault();
-    setResumeData(prevResumeData => [...prevResumeData, personalData]);
+    setPersonalData(prevPersonalData => [...prevPersonalData, personalData]);
   };
 
   const handleProDataChange = e => {
     const { name, value, type, checked } = e.target;
     type === 'checkbox'
-      ? setProData(prevProData => ({
-          ...prevProData,
-          ongoing: checked,
-        }))
-      : setProData(prevProData => ({
-          ...prevProData,
-          [name]: value,
-        }));
+      ? setProData(prevProData =>
+          prevProData.map(item => ({
+            ...item,
+            isOngoing: checked,
+          }))
+        )
+      : setProData(prevProData =>
+          prevProData.map(item => ({
+            ...item,
+            [name]: value,
+          }))
+        );
+  };
+
+  const submitProData = e => {
+    e.preventDefault();
+    setProData(prevProData => [...prevProData, proData]);
   };
 
   const handleEduDataChange = e => {
     const { name, value, type, checked } = e.target;
     type === 'checkbox'
-      ? setEduData(prevEduData => ({
-          ...prevEduData,
-          ongoing: checked,
-        }))
-      : setEduData(prevEduData => ({
-          ...prevEduData,
-          [name]: value,
-        }));
+      ? setEduData(prevEduData =>
+          prevEduData.map(item => ({
+            ...item,
+            isOngoing: checked,
+          }))
+        )
+      : setEduData(prevEduData =>
+          prevEduData.map(item => ({
+            ...item,
+            [name]: value,
+          }))
+        );
+  };
+
+  const submitEduData = e => {
+    e.preventDefault();
+    setEduData(prevEduData => [...prevEduData, eduData]);
   };
 
   return (
     <div>
       <PersonalInfo
         onChange={handlePersonalDataChange}
+        onSubmit={submitPersonalData}
         data={personalData}
-        onSubmit={submitData}
       />
-      <Experience onChange={handleProDataChange} data={proData} />
-      <Education onChange={handleEduDataChange} data={eduData} />
+      <Experience
+        onChange={handleProDataChange}
+        onSubmit={submitProData}
+        data={proData}
+      />
+      <Education
+        onChange={handleEduDataChange}
+        onSubmit={submitEduData}
+        data={eduData}
+      />
     </div>
   );
 };

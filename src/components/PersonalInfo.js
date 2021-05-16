@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import React from 'react';
 import AddButton from './AddButton';
 import EditButton from './EditButton';
+import SubmitButton from './SubmitButton';
 
 const PersonalInfo = props => {
   return (
@@ -67,6 +68,7 @@ const PersonalInfo = props => {
                 onChange={props.onChange}
               />
             </Grid>
+            <SubmitButton />
             <AddButton />
             <EditButton />
           </Grid>
