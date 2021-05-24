@@ -7,8 +7,10 @@ import AddButton from './AddButton';
 import EditButton from './EditButton';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Button from '@material-ui/core/Button';
+import AddIcon from '@material-ui/icons/Add';
 
-import React from 'react';
+import React, { useState } from 'react';
 import SubmitButton from './SubmitButton';
 // companyName,
 // jobTitle,
@@ -17,8 +19,9 @@ import SubmitButton from './SubmitButton';
 // endDate,
 // isOngoing,
 
-const Experience = ({ onChange, onSubmit, data }) => {
+const Experience = ({ onChange, onSubmit, onClick, data }) => {
   const [proData] = data;
+
   return (
     <Container>
       <Paper className='form-container'>
@@ -103,7 +106,15 @@ const Experience = ({ onChange, onSubmit, data }) => {
               />
             </Grid>
             <SubmitButton />
-            <AddButton />
+            <Button
+              onClick={onClick}
+              color='primary'
+              variant='contained'
+              style={{ margin: '1rem auto' }}
+            >
+              <AddIcon style={{ paddingRight: '0.5rem' }} /> Add 2
+            </Button>
+            <AddButton onClick={onClick} />
             <EditButton />
           </Grid>
         </form>

@@ -3,8 +3,9 @@ import PersonalInfo from './PersonalInfo';
 import Education from './Education';
 import Experience from './Experience';
 import { v4 as uuidv4 } from 'uuid';
+import AddButton from './AddButton';
 
-const Form = () => {
+const Form = props => {
   const today = new Date().toLocaleDateString();
 
   const [personalData, setPersonalData] = useState({
@@ -35,6 +36,8 @@ const Form = () => {
     },
   ]);
 
+  const [formCount, setFormCount] = useState([]);
+
   const handlePersonalDataChange = e => {
     const { name, value } = e.target;
     setPersonalData(prevPersonalData => ({
@@ -63,6 +66,18 @@ const Form = () => {
             [name]: value,
           }))
         );
+  };
+
+  const addProForm = () => {
+    setFormCount(
+      formCount.concat(
+        <Experience
+          onChange={handleProDataChange}
+          onSubmit={submitProData}
+          data={proData}
+        />
+      )
+    );
   };
 
   const submitProData = e => {
@@ -102,8 +117,13 @@ const Form = () => {
       <Experience
         onChange={handleProDataChange}
         onSubmit={submitProData}
+        onClick={addProForm}
         data={proData}
-      />
+      >
+        {props.children}
+      </Experience>
+      {formCount}
+
       <Education
         onChange={handleEduDataChange}
         onSubmit={submitEduData}
